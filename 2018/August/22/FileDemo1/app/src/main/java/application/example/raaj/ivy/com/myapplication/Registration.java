@@ -47,22 +47,23 @@ public class Registration extends AppCompatActivity {
             FileOutputStream fos = openFileOutput ( file.toString (), MODE_APPEND );
             OutputStreamWriter osw = new OutputStreamWriter ( fos );
             osw.append ( userName + "~" + name + "~" + email + "~" + password );
+
+            //You must close the file after saving otherwise you can't perform other operation
+            osw.close ();
             Toast.makeText ( this, "Registered Successfully", Toast.LENGTH_SHORT ).show ();
 
+            final Intent navMain = new Intent ( Registration.this, MainActivity.class );
+
+            new Handler (  ).postDelayed ( new Runnable () {
+                @Override
+                public void run() {
+                    startActivity ( navMain );
+                }
+            }, 1000 );
         }
         catch(Exception e){
             Toast.makeText ( this, e.getMessage (), Toast.LENGTH_SHORT ).show ();
         }
-
-        final Intent navMain = new Intent ( Registration.this, MainActivity.class );
-
-        new Handler (  ).postDelayed ( new Runnable () {
-            @Override
-            public void run() {
-                startActivity ( navMain );
-            }
-        }, 1000 );
-
     }
 
 }

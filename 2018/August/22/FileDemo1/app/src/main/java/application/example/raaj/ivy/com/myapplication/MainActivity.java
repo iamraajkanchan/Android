@@ -38,17 +38,15 @@ public class MainActivity extends AppCompatActivity {
             FileInputStream fis = openFileInput ( file.toString () );
             InputStreamReader isr = new InputStreamReader ( fis );
             BufferedReader br = new BufferedReader ( isr );
+            String line;
             Boolean status = false;
-            String line = br.readLine ();
-            Toast.makeText ( this, "Login Attempted", Toast.LENGTH_SHORT ).show ();
 
-            if(line != null){
-                String[] arr = line.split ( "~" );
-                if(username.equals ( arr[0] ) && password.equals ( arr[3] )){
-                    status = true;
-                }
-                else{
-                    Toast.makeText ( this, "Incorrect password", Toast.LENGTH_SHORT ).show ();
+            while((line = br.readLine ()) != null) {
+                    String arr[] = line.split ( "~" );
+                      if (arr[0].equals ( username ) && arr[3].equals ( password )) {
+                        status = true;
+                        break;
+                    }
                 }
                 if(status){
                     Toast.makeText ( this, "Login Successful", Toast.LENGTH_SHORT ).show ();
@@ -61,8 +59,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }, 1000 );
                 }
+                else{
+                       Toast.makeText ( this, "Incorrect password", Toast.LENGTH_SHORT ).show ();
+                }
 
-            }
+
         }
         catch(Exception e){
             Toast.makeText ( this, e.getMessage (), Toast.LENGTH_SHORT ).show ();
