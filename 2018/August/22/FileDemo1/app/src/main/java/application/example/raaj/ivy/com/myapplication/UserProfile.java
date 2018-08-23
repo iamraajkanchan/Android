@@ -24,7 +24,7 @@ public class UserProfile extends AppCompatActivity {
         Bundle mainBundle = mainIntent.getExtras ();
         String userName = mainBundle.getString ( "username_intent" );
 
-        userprofile_Message.setText ( "Welcome" + userName );
+        userprofile_Message.setText ( "Welcome " + userName );
     }
 
 }
