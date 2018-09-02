@@ -1,5 +1,6 @@
 package databasedemo.com.example.raj.ivy.databasedemo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +28,15 @@ public class UserProfile extends AppCompatActivity {
         userProfile_Password = (EditText) findViewById( R.id.userProfile_Password);
 
         dbAdapter = new DBAdapter(UserProfile.this);
+
+        Intent dataIntent = new Intent();
+        Bundle data = dataIntent.getExtras();
+        userProfile_Username.setText(data.getString("username"));
+        userProfile_Name.setText(data.getString("name"));
+        userProfile_Email.setText(data.getString("email"));
+        userProfile_Password.setText(data.getString("password"));
+
+
     }
 
     public void userProfileUpdateButton_Clicked(View view){

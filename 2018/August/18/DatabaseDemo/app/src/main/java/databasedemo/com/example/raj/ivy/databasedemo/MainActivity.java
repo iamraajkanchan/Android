@@ -34,10 +34,11 @@ public class MainActivity extends AppCompatActivity {
         boolean login = false;
         ArrayList<UserData> users;
         users = dbAdapter.displayUser();
-        Iterator i = users.listIterator();
+        Iterator i = users.iterator();
         Integer user_index = 0;
         while(i.hasNext()){
-            if(username.equals(users.get(user_index).getUsername())&& password.equals(users.get(user_index).getPassword())){
+            UserData user = (UserData) i.next();
+            if(username.equals(user.getUsername())&& password.equals(user.getPassword())){
                 login = true;
                 break;
             }
