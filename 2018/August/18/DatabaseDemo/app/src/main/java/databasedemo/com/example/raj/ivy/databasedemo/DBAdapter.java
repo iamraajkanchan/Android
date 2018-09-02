@@ -8,6 +8,16 @@ import databasedemo.com.example.raj.ivy.dao.UserDao;
 import databasedemo.com.example.raj.ivy.model.UserData;
 
 public class DBAdapter extends UserData implements UserDao {
+
+    DBHelper dbHelper;
+    Context context;
+
+    public DBAdapter(Context context) {
+        this.context = context;
+        dbHelper = new DBHelper(context);
+    }
+
+
     @Override
     public void addUser(UserData userData) {
 

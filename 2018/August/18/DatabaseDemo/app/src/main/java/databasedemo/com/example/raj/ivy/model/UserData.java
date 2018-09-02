@@ -7,6 +7,17 @@ public class UserData {
     String email;
     String password;
 
+    public UserData(){
+
+    }
+
+    public UserData(String username, String name, String email, String password){
+        this.username = username;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
     public String getUsername() {
         return username;
     }
