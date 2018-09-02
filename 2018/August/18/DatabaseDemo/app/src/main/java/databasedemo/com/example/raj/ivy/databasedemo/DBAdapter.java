@@ -1,8 +1,14 @@
 package databasedemo.com.example.raj.ivy.databasedemo;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import databasedemo.com.example.raj.ivy.dao.UserDao;
 import databasedemo.com.example.raj.ivy.model.UserData;
@@ -19,22 +25,67 @@ public class DBAdapter extends UserData implements UserDao {
 
 
     @Override
-    public void addUser(UserData userData) {
+    public long addUser(UserData userData) {
+
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        //to add entry user ContentValues then use insert method of SQLiteDatabase
+        ContentValues cv = new ContentValues();
+
+        cv.put(DBHelper.USERNAME, userData.getUsername());
+        cv.put(DBHelper.NAME, userData.getName());
+        cv.put(DBHelper.EMAIL, userData.getEmail());
+        cv.put(DBHelper.PASSWORD, userData.getPassword());
+
+        return sqLiteDatabase.insert(DBHelper.TABLE,null, cv);
 
     }
 
     @Override
     public void updateUser(UserData userData) {
 
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+
+        //to update use compileStatement of SQLiteDatabase then use bindString and executeUpdateDelete method of statement
+        SQLiteStatement statement = sqLiteDatabase.compileStatement("update users set name = ?, email = ?, password = ?");
+        statement.bindString(1, userData.getName());
+        statement.bindString(2, userData.getEmail());
+        statement.bindString(3, userData.getPassword());
+        statement.executeUpdateDelete();
+
+        Toast.makeText(context, "Data is updated in Database", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void deleteUser(UserData userData) {
+    public void deleteUser(String username) {
+
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        //to delete an entry simple use execSQL method of SQLiteDatabase
+        sqLiteDatabase.execSQL("delete from users where username = '" + username + "'");
+
+        Toast.makeText(context, "Data is deleted", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
-    public void displayUser(UserData userData) {
+    public ArrayList<UserData> displayUser() {
+
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        String column[] = {DBHelper.USERNAME, DBHelper.NAME, DBHelper.EMAIL, DBHelper.PASSWORD};
+
+        Cursor cursor = sqLiteDatabase.query(DBHelper.TABLE, column, null, null, null, null, null, null);
+
+        ArrayList<UserData> users = new ArrayList<>();
+
+        while (cursor.moveToNext()){
+            String username = cursor.getString(cursor.getColumnIndex(DBHelper.USERNAME));
+            String name = cursor.getString(cursor.getColumnIndex(DBHelper.NAME));
+            String email = cursor.getString(cursor.getColumnIndex(DBHelper.EMAIL));
+            String password = cursor.getString(cursor.getColumnIndex(DBHelper.PASSWORD));
+
+            users.add(new UserData(username, name, email, password));
+        }
+
+        return users;
 
     }
 
@@ -43,15 +94,16 @@ public class DBAdapter extends UserData implements UserDao {
         private static final String DATABASE = "databasedemodb";
         private static final String TABLE = "users";
         private static final String USERNAME = "username";
+        private static final String NAME = "name";
         private static final String EMAIL = "email";
         private static final String PASSWORD = "password";
         private static final String CREATETABLE = "" +
                 "create table users" +
                 "(" +
                 "username varchar (20) primary key," +
-                "name varchar (40)" +
-                "email varchar (50)" +
-                "password varchar (20)";
+                "name varchar (40)," +
+                "email varchar (50)," +
+                "password varchar (20))";
 
 
         //Because the activity will run in the background.

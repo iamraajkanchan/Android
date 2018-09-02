@@ -7,7 +7,7 @@
     tools:context=".UserProfile">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/userProfile_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="85dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/userProfile_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="85dp"
@@ -36,10 +36,10 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/userProfile_Username" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/userProfile_Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="85dp"
@@ -52,10 +52,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/userProfile_Name" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/userProfile_Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="85dp"
@@ -68,23 +68,24 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/userProfile_Email" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/userProfile_Update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="134dp"
         android:layout_marginLeft="84dp"
         android:layout_marginStart="84dp"
         android:layout_marginTop="63dp"
+        android:onClick="userProfileUpdateButton_Clicked"
         android:text="@string/update_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/userProfile_Password" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/userProfile_Delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="134dp"
@@ -93,9 +94,10 @@
         android:layout_marginRight="86dp"
         android:layout_marginStart="38dp"
         android:layout_marginTop="63dp"
+        android:onClick="userProfileDeleteButton_Clicked"
         android:text="@string/delete_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintStart_toEndOf="@+id/userProfile_Update"
+        app:layout_constraintTop_toBottomOf="@+id/userProfile_Password" />
 </android.support.constraint.ConstraintLayout>

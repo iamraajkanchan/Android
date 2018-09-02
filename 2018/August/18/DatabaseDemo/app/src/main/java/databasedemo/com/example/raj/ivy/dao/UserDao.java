@@ -1,15 +1,17 @@
 package databasedemo.com.example.raj.ivy.dao;
 
+import java.util.ArrayList;
+
 import databasedemo.com.example.raj.ivy.model.UserData;
 
 public interface UserDao {
 
-    public void addUser(UserData userData);
+    long addUser(UserData userData);
 
-    public void updateUser(UserData userData);
+    void updateUser(UserData userData);
 
-    public void deleteUser(UserData userData);
+    void deleteUser(String username);
 
-    public void displayUser(UserData userData);
+    ArrayList<UserData> displayUser();
 
 }
