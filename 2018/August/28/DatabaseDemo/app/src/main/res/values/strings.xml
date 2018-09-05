@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">DatabaseDemo</string>
+    <string name="username_hint">Enter Username</string>
+    <string name="name_hint">Enter Your Name</string>
+    <string name="password_hint">Enter Password</string>
+    <string name="email_hint">Enter Your Email Address</string>
+    <string name="login_text">Login</string>
+    <string name="register_text">Register</string>
+    <string name="update_text">Update</string>
+    <string name="delete_text">Delete</string>
+    <string name="add_text">Add</string>
 </resources>
