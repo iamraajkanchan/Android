@@ -22,20 +22,19 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        userProfile_Username = (EditText) findViewById(R.id.userProfile_Username);
-        userProfile_Name = (EditText) findViewById( R.id.userProfile_Name);
-        userProfile_Email = (EditText) findViewById( R.id.userProfile_Email);
-        userProfile_Password = (EditText) findViewById( R.id.userProfile_Password);
+        userProfile_Username = findViewById(R.id.userProfile_Username);
+        userProfile_Name = findViewById( R.id.userProfile_Name);
+        userProfile_Email = findViewById( R.id.userProfile_Email);
+        userProfile_Password = findViewById( R.id.userProfile_Password);
 
         dbAdapter = new DBAdapter(UserProfile.this);
 
-        Intent dataIntent = new Intent();
+        Intent dataIntent = getIntent ();
         Bundle data = dataIntent.getExtras();
         userProfile_Username.setText(data.getString("username"));
         userProfile_Name.setText(data.getString("name"));
         userProfile_Email.setText(data.getString("email"));
         userProfile_Password.setText(data.getString("password"));
-
 
     }
 

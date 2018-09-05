@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        main_Username = (EditText) findViewById(R.id.main_Username);
-        main_Password = (EditText) findViewById(R.id.main_Password);
+        main_Username = findViewById(R.id.main_Username);
+        main_Password = findViewById(R.id.main_Password);
     }
 
     public void main_LoginButtonClicked (View view){
@@ -31,31 +31,29 @@ public class MainActivity extends AppCompatActivity {
         String username = main_Username.getText().toString();
         String password = main_Password.getText().toString();
         DBAdapter dbAdapter = new DBAdapter(MainActivity.this);
+        Intent userProfileIntent = new Intent(MainActivity.this, UserProfile.class);
         boolean login = false;
-        ArrayList<UserData> users;
-        users = dbAdapter.displayUser();
+        ArrayList<UserData> users = dbAdapter.displayUser();
         Iterator i = users.iterator();
-        Integer user_index = 0;
         while(i.hasNext()){
             UserData user = (UserData) i.next();
-            if(username.equals(user.getUsername())&& password.equals(user.getPassword())){
+            if(username.equals(user.getUsername ()) && password.equals(user.getPassword ())){
                 login = true;
-                break;
+                userProfileIntent.putExtra("username", user.getUsername ());
+                userProfileIntent.putExtra("name", user.getName ());
+                userProfileIntent.putExtra("email", user.getEmail ());
+                userProfileIntent.putExtra("password", user.getPassword ());
             }
-            user_index++;
         }
         if(username.equals("admin") && password.equals("password")){
             Intent userListIntent = new Intent(MainActivity.this, UserList.class);
             startActivity(userListIntent);
         }
+
         else if(login){
-            Intent userProfileIntent = new Intent(MainActivity.this, UserProfile.class);
-            userProfileIntent.putExtra("username", users.get(user_index).getUsername());
-            userProfileIntent.putExtra("name", users.get(user_index).getUsername());
-            userProfileIntent.putExtra("email", users.get(user_index).getEmail());
-            userProfileIntent.putExtra("password", users.get(user_index).getPassword());
             startActivity(userProfileIntent);
         }
+
         else {
             Toast.makeText(this, "Please try again", Toast.LENGTH_SHORT).show();
         }

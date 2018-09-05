@@ -15,8 +15,8 @@ import databasedemo.com.example.raj.ivy.model.UserData;
 
 public class DBAdapter extends UserData implements UserDao {
 
-    DBHelper dbHelper;
-    Context context;
+    private DBHelper dbHelper;
+    private Context context;
 
     public DBAdapter(Context context) {
         this.context = context;
@@ -46,10 +46,11 @@ public class DBAdapter extends UserData implements UserDao {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
         //to update use compileStatement of SQLiteDatabase then use bindString and executeUpdateDelete method of statement
-        SQLiteStatement statement = sqLiteDatabase.compileStatement("update users set name = ?, email = ?, password = ?");
+        SQLiteStatement statement = sqLiteDatabase.compileStatement("update users set name = ?, email = ?, password = ? where username = ?");
         statement.bindString(1, userData.getName());
         statement.bindString(2, userData.getEmail());
         statement.bindString(3, userData.getPassword());
+        statement.bindString ( 4, userData.getUsername());
         statement.executeUpdateDelete();
 
         Toast.makeText(context, "Data is updated in Database", Toast.LENGTH_SHORT).show();
@@ -84,7 +85,7 @@ public class DBAdapter extends UserData implements UserDao {
 
             users.add(new UserData(username, name, email, password));
         }
-
+        cursor.close ();
         return users;
 
     }
