@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void main_LoginButtonClicked (View view){
 
+        //
         String username = main_Username.getText().toString();
         String password = main_Password.getText().toString();
         DBAdapter dbAdapter = new DBAdapter(MainActivity.this);
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         else {
-            Toast.makeText(this, "Please try again", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Check Username and Password", Toast.LENGTH_SHORT).show();
         }
     }
     public void main_RegisterButtonClicked (View view){

@@ -50,7 +50,7 @@ public class DBAdapter extends UserData implements UserDao {
         statement.bindString(1, userData.getName());
         statement.bindString(2, userData.getEmail());
         statement.bindString(3, userData.getPassword());
-        statement.bindString ( 4, userData.getUsername());
+        statement.bindString ( 4, userData.getUsername()); //check the parameters passed in update execute query
         statement.executeUpdateDelete();
 
         Toast.makeText(context, "Data is updated in Database", Toast.LENGTH_SHORT).show();
@@ -154,6 +154,4 @@ public class DBAdapter extends UserData implements UserDao {
             db.execSQL(CREATETABLE);
         }
     }
-
-
 }

@@ -29,6 +29,7 @@ public class UserProfile extends AppCompatActivity {
 
         dbAdapter = new DBAdapter(UserProfile.this);
 
+        //to take information from other activity use getIntent()
         Intent dataIntent = getIntent ();
         Bundle data = dataIntent.getExtras();
         userProfile_Username.setText(data.getString("username"));
