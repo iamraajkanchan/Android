@@ -7,6 +7,17 @@ public class UserData {
     String email;
     String password;
 
+    public UserData(){
+
+    }
+
+    public UserData(String username, String name, String email, String password){
+        this.username = username;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -37,5 +48,15 @@ public class UserData {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "UserData{" +
+                "username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
