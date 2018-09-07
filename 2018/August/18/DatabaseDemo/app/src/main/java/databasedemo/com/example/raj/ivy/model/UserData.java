@@ -6,16 +6,18 @@ public class UserData {
     String name;
     String email;
     String password;
+    String imageURI;
 
     public UserData(){
 
     }
 
-    public UserData(String username, String name, String email, String password){
+    public UserData(String username, String name, String email, String password, String imageURI){
         this.username = username;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.imageURI = imageURI;
     }
 
     public String getUsername() {
@@ -50,6 +52,10 @@ public class UserData {
         this.password = password;
     }
 
+    public String getImageURI() { return imageURI;}
+
+    public void setImageURI(String imageURI) { this.imageURI = imageURI; }
+
     @Override
     public String toString() {
         return "UserData{" +
@@ -57,6 +63,7 @@ public class UserData {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", imageURI='" + imageURI + '\'' +
                 '}';
     }
 }
