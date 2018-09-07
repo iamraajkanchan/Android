@@ -35,6 +35,7 @@ public class DBAdapter extends UserData implements UserDao {
         cv.put(DBHelper.NAME, userData.getName());
         cv.put(DBHelper.EMAIL, userData.getEmail());
         cv.put(DBHelper.PASSWORD, userData.getPassword());
+        cv.put(DBHelper.IMAGE_URI, userData.getImageURI());
 
         return sqLiteDatabase.insert(DBHelper.TABLE,null, cv);
 
@@ -46,11 +47,12 @@ public class DBAdapter extends UserData implements UserDao {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
         //to update use compileStatement of SQLiteDatabase then use bindString and executeUpdateDelete method of statement
-        SQLiteStatement statement = sqLiteDatabase.compileStatement("update users set name = ?, email = ?, password = ? where username = ?");
+        SQLiteStatement statement = sqLiteDatabase.compileStatement("update users set name = ?, email = ?, password = ?, imageURI = ? where username = ?");
         statement.bindString(1, userData.getName());
         statement.bindString(2, userData.getEmail());
         statement.bindString(3, userData.getPassword());
-        statement.bindString ( 4, userData.getUsername()); //check the parameters passed in update execute query
+        statement.bindString(4, userData.getImageURI());
+        statement.bindString ( 5, userData.getUsername()); //check the parameters passed in update execute query
         statement.executeUpdateDelete();
 
         Toast.makeText(context, "Data is updated in Database", Toast.LENGTH_SHORT).show();
@@ -71,7 +73,7 @@ public class DBAdapter extends UserData implements UserDao {
     public ArrayList<UserData> displayUser() {
 
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        String column[] = {DBHelper.USERNAME, DBHelper.NAME, DBHelper.EMAIL, DBHelper.PASSWORD};
+        String column[] = {DBHelper.USERNAME, DBHelper.NAME, DBHelper.EMAIL, DBHelper.PASSWORD, DBHelper.IMAGE_URI};
 
         Cursor cursor = sqLiteDatabase.query(DBHelper.TABLE, column, null, null, null, null, null, null);
 
@@ -82,8 +84,8 @@ public class DBAdapter extends UserData implements UserDao {
             String name = cursor.getString(cursor.getColumnIndex(DBHelper.NAME));
             String email = cursor.getString(cursor.getColumnIndex(DBHelper.EMAIL));
             String password = cursor.getString(cursor.getColumnIndex(DBHelper.PASSWORD));
-
-            users.add(new UserData(username, name, email, password));
+            String imageURI = cursor.getString(cursor.getColumnIndex(DBHelper.IMAGE_URI));
+            users.add(new UserData(username, name, email, password, imageURI));
         }
         cursor.close ();
         return users;
@@ -98,13 +100,15 @@ public class DBAdapter extends UserData implements UserDao {
         private static final String NAME = "name";
         private static final String EMAIL = "email";
         private static final String PASSWORD = "password";
+        private static final String IMAGE_URI = "imageURI";
         private static final String CREATETABLE = "" +
                 "create table users" +
                 "(" +
                 "username varchar (20) primary key," +
                 "name varchar (40)," +
                 "email varchar (50)," +
-                "password varchar (20))";
+                "password varchar (20)," +
+                "imageURI varchar(250))";
 
 
         //Because the activity will run in the background.

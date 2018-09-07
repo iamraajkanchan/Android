@@ -55,7 +55,8 @@ public class UserProfile extends AppCompatActivity {
         String email = userProfile_Email.getText().toString();
         String password = userProfile_Password.getText().toString();
 
-        UserData userData = new UserData(username, name, email, password);
+
+        UserData userData = new UserData(username, name, email, password, imageURI.toString());
         dbAdapter.updateUser(userData);
     }
 
