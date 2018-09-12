@@ -6,8 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Bitmap;
 import android.widget.Toast;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 
 import databasedemo.com.example.raj.ivy.dao.UserDao;
@@ -108,7 +110,7 @@ public class DBAdapter extends UserData implements UserDao {
                 "name varchar (40)," +
                 "email varchar (50)," +
                 "password varchar (20)," +
-                "imageURI varchar(250))";
+                "imageURI blob)";
 
 
         //Because the activity will run in the background.

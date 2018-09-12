@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import java.net.URI;
+
 import databasedemo.com.example.raj.ivy.model.UserData;
 
 public class UserProfile extends AppCompatActivity {
@@ -45,6 +47,7 @@ public class UserProfile extends AppCompatActivity {
         userProfile_Name.setText(data.getString("name"));
         userProfile_Email.setText(data.getString("email"));
         userProfile_Password.setText(data.getString("password"));
+
 
     }
 

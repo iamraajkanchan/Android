@@ -1,18 +1,20 @@
 package databasedemo.com.example.raj.ivy.model;
 
+import android.graphics.Bitmap;
+
 public class UserData {
 
     String username;
     String name;
     String email;
     String password;
-    String imageURI;
+    Byte[] imageURI;
 
     public UserData(){
 
     }
 
-    public UserData(String username, String name, String email, String password, String imageURI){
+    public UserData(String username, String name, String email, String password, Byte[] imageURI){
         this.username = username;
         this.name = name;
         this.email = email;
@@ -52,9 +54,9 @@ public class UserData {
         this.password = password;
     }
 
-    public String getImageURI() { return imageURI;}
+    public Byte[] getImageURI() { return imageURI;}
 
-    public void setImageURI(String imageURI) { this.imageURI = imageURI; }
+    public void setImageURI(Byte[] imageURI) { this.imageURI = imageURI; }
 
     @Override
     public String toString() {

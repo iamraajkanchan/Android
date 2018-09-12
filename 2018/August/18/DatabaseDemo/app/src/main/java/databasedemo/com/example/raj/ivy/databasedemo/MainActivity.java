@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 userProfileIntent.putExtra("name", user.getName ());
                 userProfileIntent.putExtra("email", user.getEmail ());
                 userProfileIntent.putExtra("password", user.getPassword ());
+                userProfileIntent.putExtra ( "image", user.getImageURI ());
             }
         }
         if(username.equals("admin") && password.equals("password")){
